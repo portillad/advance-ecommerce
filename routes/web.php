@@ -5,7 +5,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
+
 
 
 /*
@@ -65,3 +68,28 @@ Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
 Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('change.password');
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.password.update');
+
+
+//Admin Brand All Routes
+Route::prefix('brand')->group(function(){
+
+Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brands');
+Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
+Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
+Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
+Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+
+});
+
+
+
+//Admin Categories All Routes
+Route::prefix('category')->group(function(){
+
+    Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
+    Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
+    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
+    Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
+    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+    
+    });

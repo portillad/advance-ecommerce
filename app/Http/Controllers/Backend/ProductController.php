@@ -279,4 +279,16 @@ class ProductController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function ViewDeatilsProduct($id){
+        $product = Product::findOrFail($id);
+        $category = Category::findOrFail($product->category_id);
+        $subcategory = SubCategory::findOrFail($product->subcategory_id);
+        $subsubcategory = SubSubCategory::findOrFail($product->subsubcategory_id);
+        $brand = Brand::findOrFail($product->brand_id);
+
+        $multiImgs = MultiImg::where('product_id',$id)->get();
+
+        return view('backend.product.product_viewdetails',compact('category','subcategory','subsubcategory','brand','product','multiImgs'));
+    }
 }

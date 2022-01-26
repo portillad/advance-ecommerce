@@ -19,7 +19,7 @@
 
                     <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Edit Brand</h3>
+                        <h3 class="box-title">Edit Slider</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -27,37 +27,31 @@
                             
 
 
-                        <form method="POST" action="{{ route('brand.update',$brand->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('slider.update') }}" enctype="multipart/form-data">
                         @csrf
                                 
-                                <input type="hidden" name="id" value="{{ $brand->id }}">
-                                <input type="hidden" name="old_image" value="{{ $brand->brand_image }}">
+                                <input type="hidden" name="id" value="{{ $slider->id }}">
+                                <input type="hidden" name="old_image" value="{{ $slider->slider_img }}">
 
                                 <div class="form-group">
-                                    <h5>Brand Name English <span class="text-danger">*</span></h5>
+                                    <h5>Slider Title</h5>
                                     <div class="controls">
-                                        <input type="text" name="brand_name_en" class="form-control" value="{{ $brand->brand_name_en }}">
-                                        @error('brand_name_en')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="text" name="title" class="form-control" value="{{ $slider->title }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <h5>Brand Name Spanish <span class="text-danger">*</span></h5>
+                                    <h5>Slider Description</h5>
                                     <div class="controls">
-                                        <input type="text" name="brand_name_esp" class="form-control" value="{{ $brand->brand_name_esp }}">
-                                        @error('brand_name_esp')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="text" name="description" class="form-control" value="{{ $slider->description }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <h5>Brand Image <span class="text-danger">*</span></h5>
+                                    <h5>Slider Image <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="file" name="brand_image" class="form-control">
-                                        @error('brand_image')
+                                        <input type="file" name="slider_img" class="form-control">
+                                        @error('slider_img')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

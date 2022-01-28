@@ -941,7 +941,19 @@
                           <div class="image"> <a href="detail.html"><img  src="{{ asset($product->product_thumbnail) }}" alt=""></a> </div>
                           <!-- /.image -->
                           
-                          <div class="tag new"><span>new</span></div>
+
+                          @php
+                          $amount = $product->selling_price - $product->discount_price;
+                          $discount = ($amount/$product->selling_price) * 100;
+                          @endphp
+                          <div>
+                            @if($product->discount_price == NULL)
+                              <div class="tag new"><span>new</span></div>
+                            @else
+                              <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                            @endif
+                          </div>
+                          
                         </div>
                         <!-- /.product-image -->
                         
@@ -949,7 +961,14 @@
                           <h3 class="name"><a href="">@if(session()->get('language') == 'english') {{ $product->product_name_eng }} @else {{ $product->product_name_esp }} @endif</a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price"></span>${{ $product->discount_price }} <span class="price-before-discount">${{ $product->selling_price }}</span> </div>
+                          <div class="product-price"> 
+                            @if($product->discount_price == NULL)
+                              <span class="price"></span>${{ $product->selling_price }}
+                            @else
+                              <span class="price"></span>${{ $product->discount_price }}
+                              <span class="price-before-discount">${{ $product->selling_price }}</span>
+                            @endif
+                          </div>
                           <!-- /.product-price --> 
                           
                         </div>
@@ -1016,7 +1035,14 @@
                           <h3 class="name"><a href="">@if(session()->get('language') == 'english') {{ $product->product_name_eng }} @else {{ $product->product_name_esp }} @endif</a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price"></span>${{ $product->discount_price }} <span class="price-before-discount">${{ $product->selling_price }}</span> </div>
+                          <div class="product-price"> 
+                            @if($product->discount_price == NULL)
+                              <span class="price"></span>${{ $product->selling_price }}
+                            @else
+                              <span class="price"></span>${{ $product->discount_price }}
+                              <span class="price-before-discount">${{ $product->selling_price }}</span>
+                            @endif
+                          </div>
                           <!-- /.product-price --> 
                           
                         </div>
@@ -1044,7 +1070,7 @@
                   <!-- /.item -->
 
                   @empty
-                  <h5 class="text-danger">No Product Found</h5>
+                  <h5 class="text-danger">@if(session()->get('language') == 'english') No Product Found @else Producto no encontrado @endif</h5>
                   @endforelse
 
 

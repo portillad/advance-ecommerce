@@ -44,7 +44,7 @@
                                     <td>{{ $item->product_qty }} pc</td>
                                     <td>
                                         @if($item->discount_price == NULL)
-                                            <span class="badge badge-pill badge-danger"> Inactive </span>
+                                            <span class="badge badge-pill badge-danger"> No Discount </span>
                                         @else
                                             @php
                                                 $amount = $item->selling_price - $item->discount_price;
